@@ -34,10 +34,12 @@ namespace AssertRouting
         {
             Reroute(AssertUIBehaviour.DisableUI, routedAction);
         }
+
         public static void DisableAndThrow(Action routedAction)
         {
             Reroute(AssertUIBehaviour.DisableUIAndThrowExceptions, routedAction);
         }
+
         public static void Reroute(AssertUIBehaviour assertRoutingBehaviour, Action routedAction)
         {
             bool disableAssertUI = assertRoutingBehaviour.HasFlag(AssertUIBehaviour.DisableUI);

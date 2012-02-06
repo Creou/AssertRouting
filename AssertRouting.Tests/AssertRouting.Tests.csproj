@@ -46,8 +46,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AssertWholeClassTests.cs" />
+    <Compile Include="AssertTestsDisposeStyle.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="AssertTests.cs" />
+    <Compile Include="AssertTestsLambdaStyle.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AssertRouting\AssertRouting.csproj">
