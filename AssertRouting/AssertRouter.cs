@@ -22,6 +22,10 @@ namespace AssertRouting
 
         private bool _restored;
 
+        /// <summary>
+        /// Creates an assert router to manage asserts. The specified behaviour will be applied for the lifetime of the object.
+        /// </summary>
+        /// <param name="assertRoutingBehaviour">The assert reouting behaviour required.</param>
         public AssertRouter(AssertUIBehaviour assertRoutingBehaviour)
         {
             bool disableAssertUI = assertRoutingBehaviour.HasFlag(AssertUIBehaviour.DisableUI);
@@ -30,16 +34,29 @@ namespace AssertRouting
             Disable(disableAssertUI, throwExceptions);
         }
 
+        /// <summary>
+        /// Disables asserts for the duration of the provided action.
+        /// </summary>
+        /// <param name="routedAction">The action to disable asserts over</param>
         public static void Disable(Action routedAction)
         {
             Reroute(AssertUIBehaviour.DisableUI, routedAction);
         }
 
+        /// <summary>
+        /// Disables asserts and throws exception for the duration of the provided action.
+        /// </summary>
+        /// <param name="routedAction">The action to disable asserts over</param>
         public static void DisableAndThrow(Action routedAction)
         {
             Reroute(AssertUIBehaviour.DisableUIAndThrowExceptions, routedAction);
         }
 
+        /// <summary>
+        /// Reroutes asserts according to the specified behaviour for the duration of the provided action.
+        /// </summary>
+        /// <param name="assertRoutingBehaviour">The routing behaviour to apply.</param>
+        /// <param name="routedAction">The action to disable asserts over.</param>
         public static void Reroute(AssertUIBehaviour assertRoutingBehaviour, Action routedAction)
         {
             bool disableAssertUI = assertRoutingBehaviour.HasFlag(AssertUIBehaviour.DisableUI);
@@ -55,14 +72,6 @@ namespace AssertRouting
                 router.Restore();
             }
         }
-
-        ///// <summary>
-        ///// Constructor. Disables the assertion UI and exception throwing.
-        ///// </summary>
-        //public AssertRouter(bool disableAssertUI, bool throwExceptions)
-        //{
-        //    Disable(disableAssertUI, throwExceptions);
-        //}
 
         /// <summary>
         /// Method to disable the assertion UI.
